@@ -1,8 +1,3 @@
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
-import { Input } from "@/components/ui/input";
-import { FileQuestionIcon, HelpCircleIcon, Search } from "lucide-react";
-import Image from "next/image";
-import { redirectToSearch } from "@/app/actions";
 import { SearchInput } from "@/components/home/search-input";
 import { WelcomeTitle } from "@/components/home/welcome-title";
 

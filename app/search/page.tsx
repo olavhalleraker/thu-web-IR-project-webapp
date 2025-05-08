@@ -1,18 +1,19 @@
-import { Input } from "@/components/ui/input";
 import { redirect } from "next/navigation";
 import { WelcomeTitle } from "@/components/home/welcome-title";
 import { Suspense } from "react";
 import SearchResults from "@/components/search/search-results"; // Make sure this is default export
-import { Skeleton } from "@/components/ui/skeleton";
 import { ResultSkeleton } from "@/components/search/result-skeleton";
+import { SearchInput } from "@/components/home/search-input";
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: { [q: string]: string | undefined };
-}) {
-  const { q } = await searchParams;
+type SearchParams = {
+  searchParams: {
+    q?: string;
+  };
+};
 
+export default async function Page({ searchParams }: SearchParams) {
+  const { q } = searchParams;
+  
   if (!q) {
     redirect("/");
   }
@@ -23,18 +24,17 @@ export default async function Page({
         <div className="flex flex-col items-center gap-10">
           <WelcomeTitle />
           <div className="flex flex-row gap-2">
-            <Input
-              className="w-full sm:w-128"
-              placeholder="Search..."
-              autoComplete="off"
-              defaultValue={q}
-            />
+            <SearchInput defaultValue={q} />
           </div>
         </div>
 
         <Suspense
           fallback={
             <div className="flex flex-col items-center justify-center gap-2 p-8 w-full sm:w-128">
+              <ResultSkeleton />
+              <ResultSkeleton />
+              <ResultSkeleton />
+              <ResultSkeleton />
               <ResultSkeleton />
               <ResultSkeleton />
               <ResultSkeleton />

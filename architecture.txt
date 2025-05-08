@@ -1,0 +1,9 @@
+User Query ──> Query Embedding
+                  ↓
+     Compare with Precomputed Article Embeddings
+                  ↓
+      Retrieve Top-N Semantically Similar Results
+                  ↓
+  For Each Result, Apply Stance Detection (agree/neutral/disagree)
+                  ↓
+        Return Grouped or Ranked Results by Stance
