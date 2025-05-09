@@ -29,6 +29,7 @@ export default async function Page({ searchParams }: SearchParams) {
         </div>
 
         <Suspense
+          key={q} 
           fallback={
             <div className="flex flex-col items-center justify-center gap-2 p-8 w-full sm:w-128">
               <ResultSkeleton />
