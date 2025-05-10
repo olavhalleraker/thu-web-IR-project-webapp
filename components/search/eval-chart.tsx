@@ -24,9 +24,10 @@ type EvalChartProps = {
   score: number
 }
 
-export function EvalChart({ score = -1 }: EvalChartProps) {
+export function EvalChart({ score  }: EvalChartProps) {
 
   let dynamicColor = ""
+  const displayedScore = score === 0 ? 0.0001 : score
 
   if (score < 50) {
     const percent = score / 50
@@ -46,7 +47,7 @@ export function EvalChart({ score = -1 }: EvalChartProps) {
 
   const chartData = [
     {
-      score,
+      score: displayedScore,
       fill: dynamicColor,
     },
   ]
@@ -58,7 +59,8 @@ export function EvalChart({ score = -1 }: EvalChartProps) {
     >
       <RadialBarChart
         data={chartData}
-        endAngle={chartData[0].score * 3.6}
+        endAngle={chartData[0].score * 3.6 - 180}
+        startAngle={0}
         innerRadius={55}
         outerRadius={100}
       >
@@ -68,6 +70,7 @@ export function EvalChart({ score = -1 }: EvalChartProps) {
           stroke="none"
           className="first:fill-muted last:fill-background"
           polarRadius={[60, 50]}
+          
         />
         <RadialBar dataKey="score" background />
         <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
@@ -86,7 +89,7 @@ export function EvalChart({ score = -1 }: EvalChartProps) {
                       y={viewBox.cy}
                       className="fill-foreground text-3xl font-bold"
                     >
-                      {score.toLocaleString()}%
+                      {/* {score.toLocaleString()}% */}
                     </tspan>
                   </text>
                 )

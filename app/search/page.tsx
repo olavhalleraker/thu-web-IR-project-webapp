@@ -6,13 +6,13 @@ import { ResultSkeleton } from "@/components/search/result-skeleton";
 import { SearchInput } from "@/components/home/search-input";
 
 type SearchParams = {
-  searchParams: {
+  searchParams: Promise<{
     q?: string;
-  };
+  }>;
 };
 
 export default async function Page({ searchParams }: SearchParams) {
-  const { q } = searchParams;
+  const q = await searchParams.then((params) => params.q);
   
   if (!q) {
     redirect("/");

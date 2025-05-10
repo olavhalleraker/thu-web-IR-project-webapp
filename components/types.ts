@@ -8,4 +8,12 @@ export type doc = {
     summary: string;
     tags: string[] | null;
     score?: number;
+    stance: Promise<stance>
+}
+
+export type stance = {
+    query: string,
+    url: string,
+    agreementscore: number,
+    classification: number
 }

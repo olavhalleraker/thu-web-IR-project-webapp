@@ -1,15 +1,25 @@
-import { querySearch } from "@/app/actions";
+import { classifyAll, querySearch } from "@/app/actions";
 import { Badge } from "@/components/ui/badge";
-import { EvalChart } from "./eval-chart";
-import { doc } from "@/components/types";
+import { doc, stance } from "@/components/types";
+import EvalChartWrapper from "./eval-chart-wrapper";
 
 export default async function SearchResults({ q }: { q: string }) {
     const startTime = Date.now();
-    const data: doc[] = await querySearch(q);
+    const data: doc[] = await querySearch(q).then(async (data) => {
+        const stances: stance[] = await classifyAll(q, data);
 
-    function getRandomScore() {
-        return Math.floor(Math.random() * 100) + 1;
-    }
+        const promises = data.map((doc, index) => {
+            return new Promise<doc>((resolve) => {
+                const stance = stances[index];
+                doc.stance = Promise.resolve(stance);
+                resolve(doc);
+            });
+        });
+        return Promise.all(promises);
+    });
+    // function getRandomScore() {
+    //     return Math.floor(Math.random() * 100) + 1;
+    // }
 
     return (
         <div className="flex flex-col items-center justify-center gap-2 w-full md:w-256">
@@ -91,7 +101,8 @@ export default async function SearchResults({ q }: { q: string }) {
                             </div>
                         </div>
                         <div className="col-span-1 flex flex-col items-center justify-center border-l-1 border-dashed invisible sm:visible">
-                            <EvalChart score={getRandomScore()} />
+
+                            <EvalChartWrapper doc={doc} />
 
                         </div>
                     </div>

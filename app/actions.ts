@@ -1,6 +1,6 @@
 'use server';
 
-import { doc } from "@/components/types";
+import { doc, stance } from "@/components/types";
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -48,4 +48,38 @@ export async function querySearch(query: string): Promise<doc[]> {
     });
 
     return uniqueData as doc[];
+}
+
+export async function classify(query: string, url: string): Promise<stance> {
+    const APIURL = process.env.SEARCH_API_URL;
+    if (!APIURL) {
+        throw new Error("SEARCH_API_URL is not defined");
+    }
+    const res = await fetch(`${APIURL}/classify?query=${encodeURIComponent(query)}&url=${encodeURIComponent(url)}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    const data: stance = await res.json()
+    return data
+}
+
+export async function classifyAll(query: string, docs: doc[]): Promise<stance[]> {
+    const APIURL = process.env.SEARCH_API_URL;
+    if (!APIURL) {
+        throw new Error("SEARCH_API_URL is not defined");
+    }
+    const res = await fetch(`${APIURL}/classify/bundle?query=${encodeURIComponent(query)}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(docs),
+    });
+    
+    const data = await res.json();
+
+    return data as stance[];
 }
