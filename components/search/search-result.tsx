@@ -1,11 +1,6 @@
 import { doc } from "@/components/types";
 
-
-
-export default function SearchResult( { doc, q }: { doc: doc, q: string }) {
-
-
-
+export default function SearchResult( { doc }: { doc: doc }) {
     return (
         <div
                             className="sm:col-span-5 flex flex-col items-start gap-2 p-4"

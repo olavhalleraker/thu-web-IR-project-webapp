@@ -1,8 +1,5 @@
 import { redirect } from "next/navigation";
 import { WelcomeTitle } from "@/components/home/welcome-title";
-import { Suspense } from "react";
-import SearchResults from "@/components/search/search-results"; // Make sure this is default export
-import { ResultSkeleton } from "@/components/search/result-skeleton";
 import { SearchInput } from "@/components/home/search-input";
 import SearchResultsWrapper from "@/components/search/search-results-wrapper";
 
