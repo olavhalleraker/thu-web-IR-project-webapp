@@ -6,32 +6,42 @@ import { EvalChartSkeleton } from "./eval-chart-skeleton";
 import { classify } from "@/app/actions";
 import { doc } from "../types";
 
-export default function EvalChartWrapper({ doc, q }: { doc: doc; q: string }) {
-  const [score, setScore] = useState<number | null>(null);
+export default function EvalChartWrapper({ doc, q, scoreCache, setScoreCache }: { doc: doc; q: string; scoreCache: Record<string, number>; setScoreCache: React.Dispatch<React.SetStateAction<Record<string, number>>>; }) {
+    const [score, setScore] = useState<number | null>(scoreCache[doc.url] ?? null);
 
-  useEffect(() => {
-    let cancelled = false;
 
-    classify(q, doc.url).then((stance) => {
-      if (!cancelled) {
-        const newScore =
-          stance.classification === -1
-            ? 0
-            : stance.classification === 0
-            ? 50
-            : 100;
-        setScore(newScore);
-      }
-    });
+    useEffect(() => {
+        if (score !== null) {
+            console.log("Already cached");
+            return; // Already cached
+        }
 
-    return () => {
-      cancelled = true;
-    };
-  }, [q, doc.url]);
+        let cancelled = false;
 
-  if (score === null) {
-    return <EvalChartSkeleton />;
-  }
+        classify(q, doc.url).then((stance) => {
+            if (!cancelled) {
+                const newScore =
+                    stance.classification === -1
+                        ? 0
+                        : stance.classification === 0
+                            ? 50
+                            : 100;
+                setScore(newScore);
+                setScoreCache((prev) => ({
+                    ...prev,
+                    [doc.url]: newScore,
+                }));
+            }
+        });
 
-  return <EvalChart score={score} />;
+        return () => {
+            cancelled = true;
+        };
+    }, [q, doc.url]);
+
+    if (score === null) {
+        return <EvalChartSkeleton />;
+    }
+
+    return <EvalChart score={score} />;
 }

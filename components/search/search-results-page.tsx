@@ -6,7 +6,9 @@ import { EvalChartSkeleton } from "./eval-chart-skeleton";
 import EvalChartWrapper from "./eval-chart-wrapper";
 import { doc } from "../types";
 
-export default function SearchResultsPage( { paginatedData, q }: { paginatedData: doc[]; q: string }) {
+export default function SearchResultsPage( { paginatedData, q, scoreCache, setScoreCache }: { paginatedData: doc[]; q: string;   scoreCache: Record<string, number>;
+    setScoreCache: React.Dispatch<React.SetStateAction<Record<string, number>>>;
+  } ) {
     return (
         <div className="flex flex-col items-center justify-center gap-8 p-8 w-full">
                 {paginatedData.map((doc) => (
@@ -29,7 +31,7 @@ export default function SearchResultsPage( { paginatedData, q }: { paginatedData
                                     <EvalChartSkeleton />
                                 }
                             >
-                                <EvalChartWrapper doc={doc} q={q} />
+                                <EvalChartWrapper doc={doc} q={q} scoreCache={scoreCache} setScoreCache={setScoreCache} />
                             </Suspense>
                         </div>
                     </div>

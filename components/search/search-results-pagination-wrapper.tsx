@@ -15,6 +15,8 @@ export default function SearchResultsPaginationWrapper({
 }) {
     const [page, setPage] = useState(1);
     const [canNavigate, setCanNavigate] = useState(true);
+    const [scoreCache, setScoreCache] = useState<Record<string, number>>({});
+
     const itemsPerPage = 10;
 
     const start = (page - 1) * itemsPerPage;
@@ -49,7 +51,7 @@ export default function SearchResultsPaginationWrapper({
             {/* Results */}
             <div id="results-top" />
 
-            <SearchResultsPage q={q} paginatedData={paginatedData} />
+            <SearchResultsPage q={q} paginatedData={paginatedData} scoreCache={scoreCache} setScoreCache={setScoreCache} />
 
             {/* Bottom Pagination Controls (optional, duplicate for UX) */}
             <div className="flex justify-center gap-2 mt-8">
