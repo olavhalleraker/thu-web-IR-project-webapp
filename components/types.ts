@@ -6,9 +6,7 @@ export type doc = {
     imageurl: string | null;
     title: string;
     summary: string;
-    tags: string[] | null;
-    score?: number;
-    stance: Promise<stance>
+    // stance: Promise<stance>
 }
 
 export type stance = {

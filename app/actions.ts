@@ -18,7 +18,7 @@ export async function redirectToUrl(url: string) {
 
 export async function querySearch(query: string): Promise<doc[]> {
     const APIURL = process.env.SEARCH_API_URL;
-
+    const startTime = Date.now();  
     if (!APIURL) {
         throw new Error("SEARCH_API_URL is not defined");
     }
@@ -46,7 +46,7 @@ export async function querySearch(query: string): Promise<doc[]> {
             return true;
         }
     });
-
+    console.log("Search time: ", (Date.now() - startTime) / 1000, " seconds");
     return uniqueData as doc[];
 }
 

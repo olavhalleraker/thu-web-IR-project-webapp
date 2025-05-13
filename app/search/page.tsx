@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import SearchResults from "@/components/search/search-results"; // Make sure this is default export
 import { ResultSkeleton } from "@/components/search/result-skeleton";
 import { SearchInput } from "@/components/home/search-input";
+import SearchResultsWrapper from "@/components/search/search-results-wrapper";
 
 type SearchParams = {
   searchParams: Promise<{
@@ -28,21 +29,7 @@ export default async function Page({ searchParams }: SearchParams) {
           </div>
         </div>
 
-        <Suspense
-          key={q} 
-          fallback={
-            <div className="flex flex-col items-center justify-center gap-2 p-8 w-full sm:w-128">
-              <ResultSkeleton />
-              <ResultSkeleton />
-              <ResultSkeleton />
-              <ResultSkeleton />
-              <ResultSkeleton />
-              <ResultSkeleton />
-              <ResultSkeleton />
-            </div>
-          }>
-          <SearchResults q={q} />
-        </Suspense>
+      <SearchResultsWrapper q={q} />
       </main>
     </div>
   );
