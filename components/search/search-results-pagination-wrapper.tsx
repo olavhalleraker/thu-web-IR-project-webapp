@@ -64,17 +64,21 @@ export default function SearchResultsPaginationWrapper({
                         ← Previous
                     </button>
                 )}
-                {Array.from({ length: totalPages }).map((_, i) => (
-                    <button
-                        key={i}
-                        onClick={() => handlePageChange(i + 1)}
-                        disabled={!canNavigate}
-                        className={`px-3 py-1 rounded ${page === i + 1 ? "bg-blue-100 font-bold" : "hover:underline"
-                            } ${!canNavigate ? "opacity-50 cursor-not-allowed" : ""}`}
-                    >
-                        {i + 1}
-                    </button>
-                ))}
+                {Array.from({ length: Math.min(5, totalPages) }).map((_, i) => {
+                    const startPage = Math.max(1, Math.min(page - 2, totalPages - 4));
+                    const pageNumber = startPage + i;
+                    return (
+                        <button
+                            key={pageNumber}
+                            onClick={() => handlePageChange(pageNumber)}
+                            disabled={!canNavigate}
+                            className={`px-3 py-1 rounded ${page === pageNumber ? "bg-blue-100 font-bold" : "hover:underline"
+                                } ${!canNavigate ? "opacity-50 cursor-not-allowed" : ""}`}
+                        >
+                            {pageNumber}
+                        </button>
+                    );
+                })}
                 {page < totalPages && (
                     <button
                         onClick={() => handlePageChange(page + 1)}
