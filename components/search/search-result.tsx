@@ -58,7 +58,10 @@ export default function SearchResult( { doc }: { doc: doc }) {
 
                                 </p>
                             </div>
-                            <p>{doc.summary}</p>
+                            <p>
+                                {doc.summary.split(" ").slice(0, 40).join(" ")}
+                                {doc.summary.split(" ").length > 40 && "..."}
+                            </p>
                         </div>
     )
 }
