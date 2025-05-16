@@ -97,9 +97,19 @@ export function EvalChart({ score  }: EvalChartProps) {
                     <tspan
                       x={viewBox.cx}
                       y={viewBox.cy}
-                      className="fill-foreground text-3xl font-bold"
+                      className="fill-foreground text-xs font-thin"
                     >
-                      {/* {score.toLocaleString()}% */}
+                        {score[0] === 0
+                        ? score[1] >= 0.6
+                          ? "Disagree"
+                          : "Slightly Disagree"
+                        : score[0] === 100
+                        ? score[1] >= 0.6
+                          ? "Agree"
+                          : "Slightly Agree"
+                        : score[1] < 0.6
+                        ? "Uncertain/Neutral"
+                        : "Neutral"}
                     </tspan>
                   </text>
                 )
