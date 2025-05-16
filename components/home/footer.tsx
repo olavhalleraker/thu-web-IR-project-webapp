@@ -10,7 +10,6 @@ export function Footer() {
             </div>
             <div className="flex space-x-4">
                 <Link href="/docs" className="text-sm hover:underline">Documentation</Link>
-                <Link href="/#" className="text-sm hover:underline">Github</Link>
             </div>
         </footer>
     );

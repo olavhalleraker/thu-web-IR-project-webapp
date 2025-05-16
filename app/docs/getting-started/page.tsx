@@ -4,7 +4,7 @@ export default function Page() {
       <h1 className="text-2xl font-bold">Getting Started</h1>
 
       <p className="text-gray-600 [text-align:justify] [text-justify:inter-word]">
-        <strong>BiasSearch</strong> is an AI-powered news search engine that retrieves articles relevant to your query and classifies their stance as <strong>in favor</strong> (green), <strong>neutral</strong> (no color), or <strong>against</strong> (red).
+        <strong>BiasSearch</strong> is an AI-powered news search engine that retrieves articles relevant to your query and classifies their stance as <strong>in favor</strong> (green), <strong>neutral</strong> (no color), or <strong>against</strong> (red), with different color intensities depending on the level of agreement/disagreement.
       </p>
 
       <div className="flex flex-row gap-4 justify-between my-6">
@@ -72,6 +72,23 @@ export default function Page() {
           <li><strong>Classification:</strong> A multi-model zero-shot classifier predicts stance relative to the query based on article content.</li>
         </ul>
       </div>
+
+            <div className="pt-6">
+        <h2 className="text-xl font-semibold">Github repositories</h2>
+        <ul className="list-disc list-inside text-gray-600 space-y-2 mt-2 [text-align:justify] [text-justify:inter-word]">
+          <p>We encourage you to check the github repositories for a closer look at the implementation of the project</p>
+          <li><a href="https://github.com/olavhalleraker/thu-web-IR-project-webapp" className="text-blue-500">thu-web-IR-project-webapp</a></li>
+          <li><a href="https://github.com/olavhalleraker/thu-web-IR-project-api" className="text-blue-500">thu-web-IR-project-api</a></li>
+          <li><a href="https://github.com/olavhalleraker/thu-web-IR-project-crawler" className="text-blue-500">thu-web-IR-project-crawler</a></li>
+        </ul>
+      </div>
+
+      <p className="text-gray-600 [text-align:justify] [text-justify:inter-word]">
+        <br></br>
+        <br></br>
+        Olav Larsen Halleraker & Guillermo Rodrigo Pérez 
+
+      </p>
     </div>
   );
 }

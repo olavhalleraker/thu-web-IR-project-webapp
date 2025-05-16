@@ -1,6 +1,6 @@
 # 🔍 BiasSearch WebApp - Tsinghua Web Information Retrieval Project
 
-This repository (`thu-web-IR-project-webappthu_webapp`) provides the frontend web application for the **BiasSearch** project, an AI-powered news article search engine that retrieves and classifies articles **in favor**, **against**, or **neutral** with respect to the user's query. It is developed for the **Web Information Retrieval** course at **Tsinghua University**.
+This repository ([`thu-web-IR-project-thu_webapp`](https://github.com/olavhalleraker/thu-web-IR-project-webapp)) provides the frontend web application for the **BiasSearch** project, an AI-powered news article search engine that retrieves and classifies articles **in favor**, **against**, or **neutral** with respect to the user's query. It is developed for the **Web Information Retrieval** course at **Tsinghua University**.
 
 ## Key Features
 -  🔎 **Search Interface:** Users can input a query to retrieve relevant news articles.  
@@ -8,7 +8,7 @@ This repository (`thu-web-IR-project-webappthu_webapp`) provides the frontend we
 - 📱 **Responsive Design:** Optimized for both desktop and mobile experiences.
 - 🔗 **API Communication:** Connects seamlessly to the backend for real-time data fetching and classification. 
 
-This frontend connects with the backend API (hosted in the `thu-web-IR-project-api repository`) to present search results and their stance classifications in an interactive, mobile-responsive UI.
+This frontend connects with the backend API (hosted in the [`thu-web-IR-project-api repository`](https://github.com/olavhalleraker/thu-web-IR-project-api)) to present search results and their stance classifications in an interactive, mobile-responsive UI.
 
 
 ---
@@ -87,7 +87,7 @@ bun dev
 
 ### 4. Run the web for deployment 
 ```bash
-npm build
+npm run build
 npm start
 ```
 
@@ -119,6 +119,10 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 ---
+**Related repositories**  
+[`thu-web-IR-project-api repository`](https://github.com/olavhalleraker/thu-web-IR-project-api)  
+[`thu-web-IR-project-crawler repository`](https://github.com/olavhalleraker/thu-web-IR-project-crawler)
+
 Olav Larsen Halleraker  
 Guillermo Rodrigo Pérez  
 Project for Web Information Retrieval — Tsinghua University 2024/2025
