@@ -1,5 +1,6 @@
 import { SearchInput } from "@/components/home/search-input";
 import { WelcomeTitle } from "@/components/home/welcome-title";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -9,8 +10,18 @@ export default function Home() {
           <WelcomeTitle />
           <div className="flex flex-row gap-2">
             <SearchInput />
-
           </div>
+          <div className="bg-blue-100 text-gray-800 p-4 mt-16 rounded-md">
+              <p>
+                Check out our{" "}
+                <Link
+                  href="/docs"
+                  className="text-blue-500 hover:text-blue-700 font-bold"
+                >
+                  Getting Started guide
+                </Link>{" "}
+              </p>
+            </div>
         </div>
       </main>
     </div>
