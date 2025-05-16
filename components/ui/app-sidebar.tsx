@@ -18,14 +18,14 @@ const items = [
         url: "/",
         icon: SearchIcon,
     },
+    // {
+    //     title: "Documentation",
+    //     url: "/docs",
+    //     icon: Home,
+    // },
     {
-        title: "Overview",
-        url: "/docs/#",
-        icon: Home,
-    },
-    {
-        title: "Crawlers",
-        url: "/docs/#",
+        title: "Getting Started",
+        url: "/docs/getting-started",
         icon: Home,
     },
 
