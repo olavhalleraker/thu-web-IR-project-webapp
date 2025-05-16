@@ -19,20 +19,27 @@ export function WelcomeTitle() {
                 <h1 className="text-2xl sm:text-4xl font-bold text-center">
                     Welcome to <span className="text-red-400">BIAS Search</span>
                 </h1>
-                <HoverCard>
-                    <HoverCardTrigger>
-                        <HelpCircleIcon className="text-gray-500 h-6 w-6 cursor-help" />
-                    </HoverCardTrigger>
-                    <HoverCardContent>
-                        For documentation and other information go to
-                        <Link
-                            href="/docs" className="text-blue-500 hover:text-blue-700 font-bold">
-                            {" "}
-                            /docs
-                        </Link>
-                        .
-                    </HoverCardContent>
-                </HoverCard>
+                <div className="sm:hidden">
+                    <Link href="/docs">
+                        <HelpCircleIcon className="h-6 w-6 cursor-help animate-pulse" />
+                    </Link>
+                </div>
+                <div className="hidden sm:block">
+                    <HoverCard>
+                        <HoverCardTrigger>
+                            <HelpCircleIcon className="text-gray-500 h-6 w-6 cursor-help" />
+                        </HoverCardTrigger>
+                        <HoverCardContent>
+                            For documentation and other information go to
+                            <Link
+                                href="/docs" className="text-blue-500 hover:text-blue-700 font-bold">
+                                {" "}
+                                /docs
+                            </Link>
+                            .
+                        </HoverCardContent>
+                    </HoverCard>
+                </div>
             </div>
         </div>
     );
