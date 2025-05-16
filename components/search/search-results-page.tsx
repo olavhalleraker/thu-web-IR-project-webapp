@@ -47,13 +47,21 @@ export default function SearchResultsPage({
             Stance:{" "}
             {scoreCache[doc.url] !== undefined ? (
               scoreCache[doc.url][0] === 0 ? (
-                "Disagree"
-              ) : scoreCache[doc.url][0] === 50 ? (
-                "Neutral"
+                scoreCache[doc.url][1] >= 0.6 ? (
+                  "Disagree"
+                ) : (
+                  "Slightly Disagree"
+                )
               ) : scoreCache[doc.url][0] === 100 ? (
-                "Agree"
+                scoreCache[doc.url][1] >= 0.6 ? (
+                  "Agree"
+                ) : (
+                  "Slightly Agree"
+                )
+              ) : scoreCache[doc.url][1] < 0.6 ? (
+                "Uncertain/Neutral"
               ) : (
-                scoreCache[doc.url][0].toFixed(2)
+                "Neutral"
               )
             ) : (
               <div className="spinner-border animate-spin w-4 h-4 border-2 rounded-full" />
