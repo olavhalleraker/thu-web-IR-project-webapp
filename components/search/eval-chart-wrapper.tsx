@@ -6,8 +6,8 @@ import { EvalChartSkeleton } from "./eval-chart-skeleton";
 import { classify } from "@/app/actions";
 import { doc } from "../types";
 
-export default function EvalChartWrapper({ doc, q, scoreCache, setScoreCache }: { doc: doc; q: string; scoreCache: Record<string, number>; setScoreCache: React.Dispatch<React.SetStateAction<Record<string, number>>>; }) {
-    const [score, setScore] = useState<number | null>(scoreCache[doc.url] ?? null);
+export default function EvalChartWrapper({ doc, q, scoreCache, setScoreCache }: { doc: doc; q: string; scoreCache: Record<string, [number, number]>; setScoreCache: React.Dispatch<React.SetStateAction<Record<string, [number, number]>>>; }) {
+    const [score, setScore] = useState<[number, number] | null>(scoreCache[doc.url] ?? null);
 
 
     useEffect(() => {
@@ -26,10 +26,11 @@ export default function EvalChartWrapper({ doc, q, scoreCache, setScoreCache }: 
                         : stance.classification === 0
                             ? 50
                             : 100;
-                setScore(newScore);
+                
+                setScore([newScore, stance.agreementscore]);
                 setScoreCache((prev) => ({
                     ...prev,
-                    [doc.url]: newScore,
+                    [doc.url]: [newScore, stance.agreementscore]
                 }));
             }
         });

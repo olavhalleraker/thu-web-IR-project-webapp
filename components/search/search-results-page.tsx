@@ -14,8 +14,8 @@ export default function SearchResultsPage({
 }: {
   paginatedData: doc[];
   q: string;
-  scoreCache: Record<string, number>;
-  setScoreCache: React.Dispatch<React.SetStateAction<Record<string, number>>>;
+  scoreCache: Record<string, [number, number]>;
+  setScoreCache: React.Dispatch<React.SetStateAction<Record<string, [number, number]>>>;
 }) {
   return (
     <div className="flex flex-col items-center justify-center gap-8 p-8 w-full">
@@ -46,14 +46,14 @@ export default function SearchResultsPage({
           <div className="flex md:hidden col-span-1 flex-col items-center justify-center border-l-1 border-dashed text-sm text-gray-600 text-center px-2">
             Stance:{" "}
             {scoreCache[doc.url] !== undefined ? (
-              scoreCache[doc.url] === 0 ? (
+              scoreCache[doc.url][0] === 0 ? (
                 "Disagree"
-              ) : scoreCache[doc.url] === 50 ? (
+              ) : scoreCache[doc.url][0] === 50 ? (
                 "Neutral"
-              ) : scoreCache[doc.url] === 100 ? (
+              ) : scoreCache[doc.url][0] === 100 ? (
                 "Agree"
               ) : (
-                scoreCache[doc.url].toFixed(2)
+                scoreCache[doc.url][0].toFixed(2)
               )
             ) : (
               <div className="spinner-border animate-spin w-4 h-4 border-2 rounded-full" />

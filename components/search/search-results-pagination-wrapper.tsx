@@ -15,7 +15,7 @@ export default function SearchResultsPaginationWrapper({
 }) {
     const [page, setPage] = useState(1);
     const [canNavigate, setCanNavigate] = useState(true);
-    const [scoreCache, setScoreCache] = useState<Record<string, number>>({});
+    const [scoreCache, setScoreCache] = useState<Record<string, [number, number]>>({});
 
     const itemsPerPage = 10;
 

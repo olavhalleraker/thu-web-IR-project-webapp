@@ -21,28 +21,38 @@ const chartConfig = {
 } satisfies ChartConfig
 
 type EvalChartProps = {
-  score: number
+  score: [number, number]
+}
+
+function getScoreColor(score: [number, number]) {
+  const [classification, confidence] = score
+  let dynamicColor = ""
+  const displayedScore = classification === 0 ? 0.0001 : classification
+
+  if (classification < 50) {
+    const percent = classification / 50
+    const hue = 0 // red
+    const saturation = 50 * (1 - percent) * (confidence < 0.6 ? 0.8 : 1) // reduce saturation if confidence is low
+    const lightness = 55 * (confidence < 0.6 ? 1.4 : 1) // reduce lightness if confidence is low
+    // const lightness = 55 // softer brightness
+    dynamicColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`
+  } else {
+    const percent = (classification - 50) / 50
+    const hue = 120 // green
+    const saturation = 30 * percent * (confidence < 0.6 ? 0.8 : 1) // reduce saturation if confidence is low
+    const lightness = 55 * (confidence < 0.6 ? 1.4 : 1) // reduce lightness if confidence is low
+    dynamicColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`
+  }
+
+  return { displayedScore, dynamicColor }
 }
 
 export function EvalChart({ score  }: EvalChartProps) {
 
   let dynamicColor = ""
-  const displayedScore = score === 0 ? 0.0001 : score
+  const displayedScore = score[0] === 0 ? 0.0001 : score[0]
 
-  if (score < 50) {
-    const percent = score / 50
-    const hue = 0 // red
-    const saturation = 50 * (1 - percent) // max 30% saturation
-    const lightness = 55 // softer brightness
-    dynamicColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`
-  } else {
-    const percent = (score - 50) / 50
-    const hue = 120 // green
-    const saturation = 30 * percent
-    const lightness = 65
-    dynamicColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`
-  }
-
+  dynamicColor = getScoreColor(score).dynamicColor
 
 
   const chartData = [
