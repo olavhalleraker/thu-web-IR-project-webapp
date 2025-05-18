@@ -80,7 +80,7 @@ export default function SearchResult({ doc }: { doc: doc }) {
                                 {words.length > 40 && "..."}
                             </>
                         );
-                    } catch (error) {
+                    } catch  {
                         return "Summary unavailable.";
                     }
                 })()}

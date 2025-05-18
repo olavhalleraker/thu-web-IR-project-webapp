@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Page() {
   return (
     <div className="m-10 space-y-4">
@@ -10,7 +12,7 @@ export default function Page() {
       <div className="flex flex-row gap-4 justify-between my-6">
         {/* Image 1 */}
         <div className="flex-1 flex-col items-center text-center">
-          <img 
+          <Image 
             src="/Favor.png" 
             alt="Classification in favor"
             className="w-full h-auto rounded-lg object-cover"
@@ -19,7 +21,7 @@ export default function Page() {
         </div>
         {/* Image 2 */}
         <div className="flex-1 flex-col items-center text-center">
-          <img 
+          <Image 
             src="/Neutral.png" 
             alt="Classification neutral"
             className="w-full h-auto rounded-lg object-cover"
@@ -28,7 +30,7 @@ export default function Page() {
         </div>
         {/* Image 3 */}
         <div className="flex-1 flex-col items-center text-center">
-          <img 
+          <Image
             src="/Against.png" 
             alt="Classification against"
             className="w-full h-auto rounded-lg object-cover"

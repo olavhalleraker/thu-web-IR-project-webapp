@@ -38,7 +38,7 @@ export default function EvalChartWrapper({ doc, q, scoreCache, setScoreCache }: 
         return () => {
             cancelled = true;
         };
-    }, [q, doc.url]);
+    }, [q, doc.url, score, setScoreCache]);
 
     if (score === null) {
         return <EvalChartSkeleton />;
