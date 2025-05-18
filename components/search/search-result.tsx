@@ -71,8 +71,19 @@ export default function SearchResult({ doc }: { doc: doc }) {
                 </p>
             </div>
             <p>
-                {doc.summary.split(" ").slice(0, 40).join(" ")}
-                {doc.summary.split(" ").length > 40 && "..."}
+                {(() => {
+                    try {
+                        const words = doc.summary.split(" ");
+                        return (
+                            <>
+                                {words.slice(0, 40).join(" ")}
+                                {words.length > 40 && "..."}
+                            </>
+                        );
+                    } catch (error) {
+                        return "Summary unavailable.";
+                    }
+                })()}
             </p>
         </div>
     )

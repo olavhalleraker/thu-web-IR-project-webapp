@@ -46,8 +46,13 @@ export async function querySearch(query: string): Promise<doc[]> {
             return true;
         }
     });
+
+    const filteredData = uniqueData.filter((doc: doc) => {
+        return doc.summary && doc.summary.trim() !== "";
+    });
+
     console.log("Search time: ", (Date.now() - startTime) / 1000, " seconds");
-    return uniqueData as doc[];
+    return filteredData as doc[];
 }
 
 export async function classify(query: string, url: string): Promise<stance> {
