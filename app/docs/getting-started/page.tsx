@@ -16,6 +16,8 @@ export default function Page() {
             src="/Favor.png" 
             alt="Classification in favor"
             className="w-full h-auto rounded-lg object-cover"
+            width={200}
+            height={200}
           />
           <p className="text-green-500 font-medium">In favor</p>
         </div>
@@ -25,6 +27,8 @@ export default function Page() {
             src="/Neutral.png" 
             alt="Classification neutral"
             className="w-full h-auto rounded-lg object-cover"
+            width={200}
+            height={200}
           />
           <p className="text-gray-500 font-medium">Neutral</p>
         </div>
@@ -34,6 +38,8 @@ export default function Page() {
             src="/Against.png" 
             alt="Classification against"
             className="w-full h-auto rounded-lg object-cover"
+            width={200}
+            height={200}
           />
           <p className="text-red-500 font-medium">Against</p>
         </div>
